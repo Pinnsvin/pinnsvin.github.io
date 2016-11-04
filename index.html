@@ -6,42 +6,124 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Pinnsvin : 不是我选择了黑帮生活，是黑帮生活选择了我。">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheets.css">
+    <script type="text/javascript" src="javascripts/theme.js"></script>
+    <script src="javascripts/RGraph.common.core.js"></script>
+    <script src="javascripts/RGraph.common.dynamic.js"></script>
+    <script src="javascripts/RGraph.common.tooltips.js"></script>
+    <script src="javascripts/RGraph.pie.js"></script>
+    
     <title>Pinnsvin</title>
   </head>
 
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Pinnsvin">View on GitHub</a>
-
-          <h1 id="project_title">Pinnsvin</h1>
-          <h2 id="project_tagline">不是我选择了黑帮生活，是黑帮生活选择了我。</h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="pinnsvingithubio" class="anchor" href="#pinnsvingithubio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>pinnsvin.github.io</h1>
-
-<p>This is my blog project!</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+  <body onload="myDraw();">
     
-
+    <!-- The menu bar.-->
+    <div id="header_wrap" class="outer">
+      <menu>
+        <div id="languages" class="inter">
+          <a href="#">en</a><span>|</span>
+          <a href="#">zh</a>
+        </div>
+        
+        <div id="theme" class="inter">
+          <a href="javascript:void(0);" onclick="theme_dark()">dark</a><span>|</span>
+          <a href="javascript:void(0);" onclick="theme_light()">light</a>
+        </div>
+        
+      </menu>
+    </div>
+    
+    <!-- The left content.-->
+    <div id="left_wrap" class="outer">
+      <!--求职意向-->
+      <div id="job" class="inter">
+        <h2>求职意向</h2>
+        <p>java、Android开发人员、系统运维，也可以从事与数据库管理相关的工作。</p>
+      </div>
+      
+      <!-- 专业技能-->
+      <div id="skills" class="inter">
+        <h2>专业技能</h2>
+        <div id="skills_cvs"class="inter">
+          <canvas id="cvs" height="300px" width="300px">
+            [No canvas support]
+          </canvas>
+        </div>
+        
+        
+      </div>
+      
+      <!-- my education information-->
+      <div id="edu_info" class="inter">
+        <h2>教育背景</h2>
+          <p>
+            <span>2013.9~2017.6</span><span>辽东学院</span><span>信息管理与信息系统(本科)</span>
+          </p>
+          <li><strong>主修课程:</strong>
+            <p>管理信息系统、信息系统分析与设计、管理学、运筹学、管理统计学、面向对象程序设计（java）、web程序设计、数据库原理、电子商务概论、网站开发技术等。
+          </li>
+          <li><strong>辅修课程:</strong>
+            <p>C语言程序设计、数据结构、网络数据库（SQL Server、MySql）、基础会计、计算机网络应用、操作系统原理、网络营销与网上创业、系统建模等
+          </li>
+      </div>
+      
+      <!--社会实践-->
+      <div id="social_practice" class="inter">
+        <h2>社会实践</h2>
+        <li><span>2015.1~2015.3</span><span>上海日腾电子厂</span><span>作业员</span>
+          <p>利用假期时间去上海做假期工赚外快，虽然工作没有什么技术含量，但是在与社会人员的接触中学到了社会生存技巧。</p>
+        </li>
+        
+        <li><span>2015.7.10~2015.7.21</span><span>大连东软公司</span><span>学员</span>
+          <p>学校组织的社会实践项目，期间培训了有关职业生涯规划的课程，参观了大连东软公司，对软件公司的工作环境有了了解。
+          </p>
+        </li>
+        
+      </div>
+      <!--证书-->
+      <div id="certificate" class="inter">
+        <h2>技能证书</h2>
+        <p>
+          心理咨询师三级证书、计算机二级Mysql.
+        </p>
+      </div>
+      
+    </div>
+    
+    <!-- The right content.-->
+    <div id="right_wrap" class="outer">
+      
+      <!-- My photo-->
+      <div id="my_photo" class="inter">
+        <img id="img_photo" src="images/me.png" alt="" />
+      </div>
+      
+      <!-- My base information.-->
+      <div id="my_info" class="inter">
+        <h2>杜军涛</h2>
+        <p>标签：<code>93年</code><code>17年应届生</code></p>
+        <p>民族：汉族</p>
+        <p>籍贯：甘肃庆阳</p>
+        <p>学历：本科</p>
+        <p>专业：信息管理与信息系统</p>
+        <p>毕业院校：辽东学院</p>
+        <p>邮箱：<a href="mailto:pinnsvin@163.com?subject=邀请面试" title="邀请面试" >pinnsvin@163.com</a></p>
+      </div>
+      
+      <!-- Footer-->
+      <div id="footer_wrap" class="inter">
+        <footer>
+          <p>link:
+            <a href="http://www.github.com/pinnsvin">Github</a>
+            <a href="http://www.cnblogs.com/pinnsvin">博客园</a>
+            <a href="http://blog.csdn.net/pinnsvin">CSDN</a>
+          </p>
+          
+        </footer>
+      </div>
+      
+    </div>
+    
   </body>
 </html>

@@ -1,0 +1,148 @@
+/*MeyerWeb Reset
+*******************************************************************************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 整体布局 */
+body{
+  background-color: #333;
+  color: #fff;
+}
+#header_wrap{
+  position: fixed;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+#left_wrap{
+  float: left;
+  margin-top: 30px;
+  width: 75%;
+  min-width: 750px;
+  min-height:665px;
+}
+#right_wrap{
+  position: fixed;
+  margin-left: 75%;
+  margin-top: 30px;
+  height: 100%;
+  width: 25%;
+  min-width: 200px;
+  min-height: 665px;
+  text-align: center;
+}
+
+code{
+  background-color: #666;
+  margin-right: 4px;
+  padding: 2px;
+  border-radius: 10%;
+}
+a{
+  text-decoration: none;
+  color: #345678;
+  font-size: 14px;
+  margin-right: 5px;
+}
+a:hover{
+  text-decoration: underline;
+}
+a:active{
+  color: #fff;
+}
+strong{
+  font-style: normal;
+  font-size: 18px;
+}
+span{
+  margin:0 5px;
+}
+
+/*header 部分*/
+#header_wrap .inter{
+  display: inline;
+  margin-right: 30px;
+}
+
+/*left部分*/
+#left_wrap .inter{
+  margin: 30px;
+  padding: 10px;
+  background-color: #222;
+}
+#left_wrap h2{
+  font-size: 20px;
+  font-style: normal;
+  margin-bottom: inherit;
+}
+#left_wrap li{
+  margin-left: 20px;
+}
+#left_wrap p{
+  padding: 8px;
+}
+
+/*专业技能*/
+#skills_cvs{
+  text-align: center;
+  padding: 40px;
+}
+
+/* right部分*/
+#my_photo{
+  height: 200px;
+}
+#my_photo img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+#my_info{
+  height: auto;
+  padding-bottom: 40px;
+}
+#my_info h2{
+  font-size: 32px;
+  padding: 8px;
+}
+#my_info p{
+  font-size: 14px;
+  padding: 5px;
+}
+#footer_wrap{
+  height: auto;
+}
