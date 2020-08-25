@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Noting</title>
-  </head>
-  <body>
-    There has nothing.
-  </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./asciidoctor/css/asciidoctor.css">
+    <script src="./asciidoctor/browser/asciidoctor.min.js"></script>
+</head>
+
+<body>
+    <div id="text"></div>
+
+    <script>
+        var xmlhttp;
+
+        function loadData(url, cfunc) {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = cfunc;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        };
+
+        function readFile(url) {
+            loadData(url, function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    // console.log('读取的数据 ==== ', xmlhttp.responseText);
+                    var asciidoctor = Asciidoctor();
+                    var html = asciidoctor.convert(xmlhttp.responseText, { safe: 'safe', attributes: { linkcss: true } });
+                    document.getElementById("text").innerHTML = html;
+                }
+            })
+        };
+
+        readFile("./1.adoc");
+
+    </script>
+
+</body>
+
 </html>

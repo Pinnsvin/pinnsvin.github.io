@@ -1,0 +1,94 @@
+# 分红信息重复的问题
+杜军涛 <dujuntao@e-nci.com>
+v1.0 {docdate}
+:plantuml-server-url: https://www.plantuml.com/plantuml
+:doctype: article
+:toc:
+// default: empty
+:imagesdir: ./images
+// default: ./images/icons
+:iconsdir: ./icons
+// default: ./stylesheets
+// :stylesdir: ./styles
+:icons: font
+:readme: README.adoc
+
+== 问题描述
+
+官网用户中心-我的保单中分红型的保单，分红信息有重复项。
+
+.信息
+====
+*环境：* 生产
+
+*账户：* 13589342819/ma19621217
+
+*客户号：* 250376028
+
+*五要素：* 马梅容-女-身份证-420923196212170124-1962-12-17
+
+*保单号：* 886487238330
+====
+
+== 问题排查
+
+=== 排查思路
+
+- 数据（接口/数据库）是否有问题？
+- 保单同步-核心返回数据是否有问题？
+- 保单同步-存储数据逻辑是否有问题？
+
+=== 排查结论
+
+数据库数据有问题，数据异常表现为 *数据精确位数* 和 *小数点前的数字0消失*。具体如下：
+
+|===
+|2017 | .019 | 0.0260 | 50000 | 1002.31
+|2017 | 0.019 | 0.026 | 50000 | 1002.31
+|2016 | 0.0175 | 0.008 | 50000 | 907.31
+|2016 | .0175 | 0.0080 | 50000 | 907.31
+|2015 | .0175 | 0.0060 | 50000 | 891.7
+|2015 | 0.0175 | 0.006 | 50000 | 891.7
+|===
+
+==== 原因
+
+- 核心分红历史信息查询接口返回数据有差错。
+
+.接口信息
+====
+*名称：* 分红历史信息查询
+
+*ESB服务编码：*  R001991000000063
+
+*寿险ESB服务编码：*  P00001000310
+====
+
+*报文数据：* link:scs-核心报文.xml[]
+
+_问题单号报文现在已经不能找到，找了一个具有相同问题的报文_
+
+== 问题修复
+
+[plantuml, 操作流程, png]
+....
+@startuml
+start
+:删除有问题的数据;
+if (谁处理数据？) then(数据提供方)
+    :提供标准合规数据;
+else (数据使用方)
+    :数据标准化处理;
+endif
+stop
+@enduml
+....
+
+=== 删除历史数据
+
+....
+-- 查询所有分红信息有问题的数据
+SELECT * FROM CS_POLICY_BONUS WHERE bonus_rate LIKE '.%' OR (TO_NUMBER(terminal_bonus_rate)!=0 AND terminal_bonus_rate LIKE '%0');
+-- 删除所有分红信息有问题的数据
+DELETE FROM CS_POLICY_BONUS WHERE bonus_rate LIKE '.%' OR (TO_NUMBER(terminal_bonus_rate)!=0 AND terminal_bonus_rate LIKE '%0');
+....
